@@ -10,7 +10,7 @@ from test_collection import *
 
 def test_collection():
     Object_collection = Collection_test()
-    Object_collection.collection_test()
+    Object_collection.collection_test(browser)
 def test_assesment():
     Object_assessment = Collection_test()
-    Object_assessment.assessment_test()
+    Object_assessment.assessment_test(browser)
