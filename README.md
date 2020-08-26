@@ -14,4 +14,4 @@
 8. для проверки, - что добавилось в консоль, пишется | path 
 9. для проверки всех установленный пакетов, - пишется в консоль | pip list
 
-pytest -s -v --domen_name=cirrus2 (#указать нужный домен, имена в конфиге) tests.py (<# название нужного теста)
+Пример вызова теста: pytest -s -v -m "main" --domen_name=cirrusplatform main_collection_tests.py
