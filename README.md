@@ -1,4 +1,4 @@
-# Cirrus_auto_tests_v2
+# Cirrus_automated_tests_in_python_v2
 
 Команды указываются в консоли 
 1. python не ниже версии 3.7.3 (python | узнать версию питона)
