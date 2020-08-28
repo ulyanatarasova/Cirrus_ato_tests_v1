@@ -91,8 +91,8 @@ class Cirrus:
         alert.click()
 
     def add_question(self, browser):
-        add_question = WebDriverWait(browser, 5).until(EC.element_to_be_clickable((By.XPATH, "//button["
-                                                                                             "@id='add-menu']")))
+        add_question = WebDriverWait(browser, 2000).until(EC.element_to_be_clickable((By.XPATH, "//button["
+                                                                                            "@id='add-menu']")))
         add_question.click()
 
     def choose_question(self, question_name, browser):
@@ -123,6 +123,13 @@ class Cirrus:
 
             send_value = browser.find_elements_by_xpath(selector)
             send_value[index].send_keys(text)
+
+    def add_aternatives(self, browser):
+        browser.find_element_by_xpath("//button[@class='reset-2Sxmr button-2DTz8 rs_preserve success-1JvQB success-0-2"
+                                       " c0149']").click()
+
+    def add_aternatives_remove(self, index, browser):
+        browser.find_elements_by_xpath("//i[@class='icon icon-cross']")[index].click()
 
     def select_picture(self, expansion, browser):
         all_items = browser.find_elements_by_xpath("//div[@class='listViewItem__column']")
@@ -185,6 +192,9 @@ class Cirrus:
     def select_item_purpose_summative(self, index, browser):
         browser.find_elements_by_xpath("//label[@data-qa='label-qe-item-purpose-summative-button']")[index].click()
 
+    def select_seed_yes(self, index, browser):
+        browser.find_elements_by_xpath("//label[@data-qa='label-qe-seedItem-yes-button']")[index].click()
+
     def taxonomy(self, value, browser):
         select = browser.find_element_by_xpath("//select[@data-qa='qe-taxonomies-select']")
         select.click()
@@ -216,11 +226,59 @@ class Cirrus:
         save_button = browser.find_element_by_xpath("//button[@data-qa='question-editor-actions-save']")
         save_button.click()
 
-    def check_alert(self, browser):
+    def cancel_button(self, browser):
+        cancel_button = browser.find_element_by_xpath("//button[@data-qa='question-editor-actions-cancel']")
+        cancel_button.click()
+
+    def warning_after_click_cancel_yes(self, index, browser):
+        browser.find_elements_by_xpath("//button[@data-qa='dialog-confirm-button']")[index].click()
+
+    def warning_after_click_cancel_cancel(self, index, browser):
+        browser.find_elements_by_xpath("//button[@data-qa='dialog-cancel-button']")[index].click()
+
+    def check_alert_in_section(self, browser):
         try:
-          alert = WebDriverWait(browser, 5).until(EC.visibility_of_element_located((By.XPATH, "//div[@class='c0166']")))
+          alert = WebDriverWait(browser, 10).until(EC.visibility_of_element_located((By.XPATH,
+                                                                                     "//div[@class='c0166']")))
         except:
             raise ValueError("Error. Alert was not found.")
+
+    def check_alert_in_questions(self, browser):
+        try:
+          alert = WebDriverWait(browser, 10).until(EC.visibility_of_element_located((By.XPATH,
+                                                                                       "//div[@class='c011']")))
+        except:
+            raise ValueError("Error. Alert was not found.")
+
+    def check_text_in_options_section(self, browser):
+        try:
+          text = WebDriverWait(browser, 10).until(EC.visibility_of_element_located((By.XPATH, "//div[text()='Please"
+                                                                            " enter a value between 1 and 500']")))
+        except:
+            raise ValueError("Error. Alert was not found.")
+
+    def checkbox2_on_options_in_section(self, index, browser):
+        hide = browser.find_elements_by_xpath("//div[@class='checkbox-3v829']")[index]
+        hide.click()
+
+    def click_options_in_question_editor(self, browser):
+        browser.find_element_by_xpath("//button[@data-qa='control-link']").click()
+
+    def click_detailed_feedback(self, browser):
+        for i in browser.find_elements_by_xpath("//label[@class='']"):
+            try:
+                i.click()
+            except:
+                pass
+
+    def select_value(self, browser):
+        select = browser.find_elements_by_tag_name('select')
+        select[1].click()
+        select[1].send_keys(u'\ue015' + u'\ue007')
+
+    def question_editor_options_advanced_options_checkboxes(self, index, browser):
+        alternatives = browser.find_elements_by_xpath("//label[@class='label-2aRVS']")[index]
+        alternatives.click()
 
 
 
